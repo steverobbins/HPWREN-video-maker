@@ -12,7 +12,7 @@ from the Santiago West camera.
 
 Here is the result as a very poor quality gif
 
-![HPWREN Santiago West camera timelapse from September 11th, 2023]()
+![HPWREN Santiago West camera timelapse from September 11th, 2023](https://i.imgur.com/JcUvqwu.mp4)
 
 It works on my machine :man_shrugging:.  You'll probably be fine if you replace
 `command-threader` with `bash` in `prep-images.py`, but it will take longer to
