@@ -10,7 +10,7 @@ Usage: `./run.sh https://hpwren.ucsd.edu/cameras/archive/stgo-w-mobo-c/large/202
 The above will generate a 60 second long video from the days worth of images
 from the Santiago West camera.
 
-Here is the result as a very poor quality gif
+Here is the result (in a lower quality)
 
 [![HPWREN Santiago West camera timelapse from September 11th, 2023](https://i.imgur.com/JcUvqwu.png)](https://i.imgur.com/JcUvqwu.mp4)
 
