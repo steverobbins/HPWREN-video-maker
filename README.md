@@ -12,7 +12,7 @@ from the Santiago West camera.
 
 Here is the result (in a lower quality)
 
-[![HPWREN Santiago West camera timelapse from September 11th, 2023](https://i.imgur.com/JcUvqwu.png)](https://i.imgur.com/JcUvqwu.mp4)
+https://github.com/steverobbins/HPWREN-video-maker/assets/3498562/a0e5ad39-7cf5-492d-a52d-3e5bb620470c
 
 It works on my machine :man_shrugging:.  You'll probably be fine if you replace
 `command-threader` with `bash` in `prep-images.py`, but it will take longer to
