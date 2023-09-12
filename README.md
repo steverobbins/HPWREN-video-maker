@@ -18,4 +18,4 @@ It works on my machine :man_shrugging:.  You'll probably be fine if you replace
 `command-threader` with `bash` in `prep-images.py`, but it will take longer to
 download all the images since it's not doing it in parallel.
 
-Please be nice HPWREN and don't abuse their free badwidth.
+Please be nice HPWREN and don't abuse their free bandwidth.
