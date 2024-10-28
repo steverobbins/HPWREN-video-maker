@@ -30,7 +30,15 @@ cd "result/$DATETIME"
 
 python3.11 ../../prep-images.py $CAMERA $DATE > download-images.sh
 
-~/bin/command-threader download-images.sh 25
+if [ -f ~/bin/command-threader ]; then
+    # This is parallel-ish script on my machine to run commands asyncronously.
+    # Replace with whatever works for you, or download them one at a time
+    #
+    # https://www.gnu.org/software/parallel/parallel_tutorial.html
+   ~/bin/command-threader download-images.sh 25
+else
+   bash download-images.sh
+fi
 
 FILE_COUNT=$(ls -l *.jpg | wc -l)
 FRAME_RATE=$((FILE_COUNT / RUNTIME))
