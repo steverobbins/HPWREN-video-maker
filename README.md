@@ -2,10 +2,10 @@ HPWREN Webcam Video from Archived Images
 ===
 
 A very crude script to get 24 hours worth of images from a camera like
-https://hpwren.ucsd.edu/cameras/S/SD/stgo.html and compile the static images
-into a video of your desired length.
+https://www.hpwren.ucsd.edu/cameras/S/SD/mta.html?camera=stgo-e-mobo-c and
+compile the static images into a video of your desired length.
 
-Usage: `./run.sh https://hpwren.ucsd.edu/cameras/archive/stgo-w-mobo-c/large/20230911/ 60`
+Usage: `./run.sh stgo-w-mobo-c 20241027 60`
 
 The above will generate a 60 second long video from the days worth of images
 from the Santiago West camera.
