@@ -5,6 +5,7 @@ import os
 import re
 import requests
 import sys
+import time
 
 from dotenv import load_dotenv
 
@@ -15,21 +16,37 @@ def main():
     if len(args) < 3:
         exit('Camera and date not specified', 1)
 
-    for i in range(1, 8):
-        response = apiRequest('post', params={
-            'camera': args[1],
-            'date': args[2],
-            'quaver': 'Q%s' % i,
-        })
-        if response.status_code != 200:
-            exit('Got bad response %d: %s' % (response.status_code, response.content.decode()), 2)
+    commands = open('download-images.sh', 'a')
+
+    for i in range(1, 9):
+        while True:
+            response = apiRequest('post', params={
+                'camera': args[1],
+                'date': args[2],
+                'quaver': 'Q%s' % i,
+            })
+            print('api response for %s/%s/Q%s' % (args[1], args[2], i))
+            print(response.status_code)
+            if response.status_code != 200:
+                print(response.content.decode())
+            if response.status_code >= 500:
+                time.sleep(3)
+            elif response.status_code != 200:
+                exit('Got bad response %d: %s' % (response.status_code, response.content.decode()), 2)
+            else:
+                break
         data = json.loads(response.content.decode())
         if data and data.get('result'):
             for url in data['result']:
-                print('wget %s/%s' % (
-                    os.environ.get('HPWREN_IMAGE_URL', 'https://cdn.hpwren.ucsd.edu'),
-                    url
-                ))
+                parts = url.split('/')
+                cacheFile = '../../cache/%s/%s' % (args[2], parts[-1])
+                if os.path.isfile(cacheFile):
+                    commands.write("cp %s ./\n" % cacheFile)
+                else:
+                    commands.write("wget %s/%s\n" % (
+                        os.environ.get('HPWREN_IMAGE_URL', 'https://cdn.hpwren.ucsd.edu'),
+                        url
+                    ))
 
 def apiRequest(method, url='', params={}):
         fullUrl = '%s%s' % (

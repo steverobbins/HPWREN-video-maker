@@ -25,10 +25,10 @@ fi
 
 DATETIME=`date -u +"%Y%m%d%H%M%S"`
 
-mkdir -p "result/$DATETIME"
+mkdir -p "result/$DATETIME" "cache/$DATE"
 cd "result/$DATETIME"
 
-python3.11 ../../prep-images.py $CAMERA $DATE > download-images.sh
+python3.11 ../../prep-images.py $CAMERA $DATE 2>&1 | tee prep.log
 
 if [ -f ~/bin/command-threader ]; then
     # This is parallel-ish script on my machine to run commands asyncronously.
@@ -40,9 +40,15 @@ else
    bash download-images.sh
 fi
 
+cp *.jpg "../../cache/$DATE/"
+
 FILE_COUNT=$(ls -l *.jpg | wc -l)
 FRAME_RATE=$((FILE_COUNT / RUNTIME))
 
+echo "Found $FILE_COUNT files.  Runtime for $RUNTIME seconds yeilds framerate $FRAME_RATE.  Rendering..."
+
 ffmpeg -framerate "$FRAME_RATE" -pattern_type glob -i '*.jpg' video.mp4
+
+rm -rf *.jpg
 
 cp video.mp4 ~/Downloads/$DATETIME.mp4

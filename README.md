@@ -16,4 +16,7 @@ https://github.com/steverobbins/HPWREN-video-maker/assets/3498562/a0e5ad39-7cf5-
 
 It works on my machine :man_shrugging: YMMV
 
-Please be nice HPWREN and don't abuse their free bandwidth.
+Please be nice HPWREN and don't abuse their free bandwidth.  This script will
+attempt to cache files in `cache/`, but there is no garbage control.  Be sure to
+clear it as needed and/or run `rm -rf result` every once in a while to free up
+disk space.
