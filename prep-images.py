@@ -16,16 +16,19 @@ def main():
     if len(args) < 3:
         exit('Camera and date not specified', 1)
 
+    camera = args[1]
+    date = args[2]
+
     commands = open('download-images.sh', 'a')
 
     for i in range(1, 9):
         while True:
             response = apiRequest('post', params={
-                'camera': args[1],
-                'date': args[2],
+                'camera': camera,
+                'date': date,
                 'quaver': 'Q%s' % i,
             })
-            print('api response for %s/%s/Q%s' % (args[1], args[2], i))
+            print('api response for %s/%s/Q%s' % (camera, date, i))
             print(response.status_code)
             if response.status_code != 200:
                 print(response.content.decode())
@@ -39,7 +42,7 @@ def main():
         if data and data.get('result'):
             for url in data['result']:
                 parts = url.split('/')
-                cacheFile = '../../cache/%s/%s' % (args[2], parts[-1])
+                cacheFile = '../../cache/%s/%s/%s' % (date, parts[1], parts[-1])
                 if os.path.isfile(cacheFile):
                     commands.write("cp %s ./\n" % cacheFile)
                 else:

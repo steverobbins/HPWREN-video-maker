@@ -25,7 +25,7 @@ fi
 
 DATETIME=`date -u +"%Y%m%d%H%M%S"`
 
-mkdir -p "result/$DATETIME" "cache/$DATE"
+mkdir -p "result/$DATETIME" "cache/$DATE/$CAMERA"
 cd "result/$DATETIME"
 
 python3.11 ../../prep-images.py $CAMERA $DATE 2>&1 | tee prep.log
@@ -35,12 +35,12 @@ if [ -f ~/bin/command-threader ]; then
     # Replace with whatever works for you, or download them one at a time
     #
     # https://www.gnu.org/software/parallel/parallel_tutorial.html
-   ~/bin/command-threader download-images.sh 25
+   ~/bin/command-threader download-images.sh 25 >> prep.log
 else
-   bash download-images.sh
+   bash download-images.sh >> prep.log
 fi
 
-cp *.jpg "../../cache/$DATE/"
+cp *.jpg "../../cache/$DATE/$CAMERA" >> prep.log
 
 FILE_COUNT=$(ls -l *.jpg | wc -l)
 FRAME_RATE=$((FILE_COUNT / RUNTIME))
