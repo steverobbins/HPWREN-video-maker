@@ -51,4 +51,4 @@ ffmpeg -framerate "$FRAME_RATE" -pattern_type glob -i '*.jpg' video.mp4
 
 rm -rf *.jpg
 
-cp video.mp4 ~/Downloads/$DATETIME.mp4
+cp video.mp4 ~/Downloads/$CAMERA-$DATETIME.mp4
