@@ -42,7 +42,7 @@ def main():
         if data and data.get('result'):
             for url in data['result']:
                 parts = url.split('/')
-                cacheFile = '../../cache/%s/%s/%s' % (date, parts[1], parts[-1])
+                cacheFile = '../../../../cache/%s/%s/%s' % (date, parts[1], parts[-1])
                 if os.path.isfile(cacheFile):
                     commands.write("cp %s ./\n" % cacheFile)
                 else:

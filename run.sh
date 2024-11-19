@@ -16,11 +16,15 @@ if [ -z "$1" ]; then
 fi
 
 BASE_DIR=$(dirname $(realpath $0))
-DATETIME=`date -u +"%Y%m%d%H%M%S"`
 
 RUNTIME=60
 if [[ $3 != '' ]]; then
     RUNTIME="$3"
+fi
+
+DATETIME=`date -u +"%Y%m%d%H%M%S"`
+if [[ $4 != '' ]]; then
+    DATETIME="$4"
 fi
 
 IFS=',' read -ra CAMERAS <<< "$1"
